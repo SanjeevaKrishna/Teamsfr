@@ -1,0 +1,35 @@
+[
+  {
+    "id": "arjun",
+    "name": "Arjun Sharma",
+    "role": "Frontend Developer",
+    "emoji": "👨‍💻",
+    "location": "Hyderabad, India",
+    "email": "arjun@example.com",
+    "bio": "Arjun loves building clean user interfaces and has 3 years of experience with HTML, CSS and JavaScript.",
+    "skills": ["HTML", "CSS", "JavaScript", "React"],
+    "color": "#4f46e5"
+  },
+  {
+    "id": "priya",
+    "name": "Priya Nair",
+    "role": "UI Designer",
+    "emoji": "👩‍🎨",
+    "location": "Bangalore, India",
+    "email": "priya@example.com",
+    "bio": "Priya creates beautiful and intuitive designs. She believes good design should be invisible and just work.",
+    "skills": ["Figma", "Illustrator", "Prototyping", "User Research"],
+    "color": "#db2777"
+  },
+  {
+    "id": "ravi",
+    "name": "Ravi Kumar",
+    "role": "Backend Developer",
+    "emoji": "🧑‍🔧",
+    "location": "Chennai, India",
+    "email": "ravi@example.com",
+    "bio": "Ravi builds the engines that power applications. He specialises in databases and server-side logic.",
+    "skills": ["Python", "Node.js", "PostgreSQL", "AWS"],
+    "color": "#059669"
+  }
+]

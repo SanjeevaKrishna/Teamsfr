@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Team</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      margin: 0;
+      padding: 40px 20px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .header h1 {
+      font-size: 36px;
+      color: #1a1a2e;
+      margin-bottom: 8px;
+    }
+
+    .header p {
+      color: #666;
+      font-size: 16px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 24px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 16px;
+      padding: 30px 24px;
+      text-decoration: none;
+      color: inherit;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      border-top: 4px solid var(--color);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: block;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+    }
+
+    .card-emoji {
+      font-size: 48px;
+      margin-bottom: 14px;
+    }
+
+    .card-name {
+      font-size: 20px;
+      font-weight: bold;
+      color: #1a1a2e;
+      margin-bottom: 4px;
+    }
+
+    .card-role {
+      font-size: 14px;
+      color: var(--color);
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .card-location {
+      font-size: 13px;
+      color: #999;
+    }
+
+    .view-btn {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 13px;
+      color: var(--color);
+      font-weight: bold;
+    }
+
+    .loading {
+      text-align: center;
+      color: #999;
+      padding: 60px;
+      font-size: 18px;
+    }
+
+    .error {
+      text-align: center;
+      color: red;
+      padding: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>👥 Our Team</h1>
+    <p>Meet the people behind the work</p>
+  </div>
+
+  <!-- Cards will appear here, built by JavaScript from team.json -->
+  <div class="grid" id="grid">
+    <div class="loading">Loading team...</div>
+  </div>
+
+  <script>
+    /*
+      HOW THIS WORKS:
+      1. JavaScript fetches team.json from the same folder
+      2. For each person in the JSON, it creates a card
+      3. The card links to pages/[id].html
+      4. To add a new person: add them to team.json + create their page
+    */
+
+    fetch('team.json')
+      .then(response => response.json())
+      .then(members => {
+
+        const grid = document.getElementById('grid');
+        grid.innerHTML = ''; // clear "Loading..."
+
+        members.forEach(member => {
+          const card = document.createElement('a');
+          card.href = 'pages/' + member.id + '.html';
+          card.className = 'card';
+          card.style.setProperty('--color', member.color);
+
+          card.innerHTML = `
+            <div class="card-emoji">${member.emoji}</div>
+            <div class="card-name">${member.name}</div>
+            <div class="card-role">${member.role}</div>
+            <div class="card-location">📍 ${member.location}</div>
+            <div class="view-btn">View Profile →</div>
+          `;
+
+          grid.appendChild(card);
+        });
+
+      })
+      .catch(error => {
+        document.getElementById('grid').innerHTML =
+          '<div class="error">Could not load team data. Make sure team.json exists.</div>';
+        console.error(error);
+      });
+  </script>
+
+</body>
+</html>
